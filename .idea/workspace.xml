@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aed400ec-7744-4ce4-ba65-9ff8d5958ef3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/fmh_android_15_03_24/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/fmh_android_15_03_24/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cases.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Cases.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fmh_android_15_03_24/app/src/androidTest/java/ru/iteco/fmhandroid/ui/elements/NewsControlPanelPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/fmh_android_15_03_24/app/src/androidTest/java/ru/iteco/fmhandroid/ui/elements/NewsControlPanelPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fmh_android_15_03_24/app/src/androidTest/java/ru/iteco/fmhandroid/ui/tests/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/fmh_android_15_03_24/app/src/androidTest/java/ru/iteco/fmhandroid/ui/tests/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fmh_android_15_03_24/app/src/androidTest/java/ru/iteco/fmhandroid/ui/tests/NewsControlPanelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/fmh_android_15_03_24/app/src/androidTest/java/ru/iteco/fmhandroid/ui/tests/NewsControlPanelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fmh_android_15_03_24/app/src/androidTest/java/ru/iteco/fmhandroid/ui/tests/NewsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/fmh_android_15_03_24/app/src/androidTest/java/ru/iteco/fmhandroid/ui/tests/NewsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fmh_android_15_03_24/app/src/androidTest/java/ru/iteco/fmhandroid/ui/tests/ThematicQuoteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/fmh_android_15_03_24/app/src/androidTest/java/ru/iteco/fmhandroid/ui/tests/ThematicQuoteTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plan.md" beforeDir="false" afterPath="$PROJECT_DIR$/plan.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +55,7 @@
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RunManager" selected="Gradle.C:/Users/kybal/AndroidStudioProjects/Diploma/fmh_android_15_03_24/build.gradle [clean] (3)">

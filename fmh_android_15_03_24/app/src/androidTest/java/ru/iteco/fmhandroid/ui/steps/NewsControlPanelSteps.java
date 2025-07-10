@@ -298,6 +298,12 @@ public class NewsControlPanelSteps {
     public static String getDescriptionBirthdayEdit() {
         return descriptionBirthdayEdit;
     }
+    public int getButtonToRollUpAll() {
+        return newsControlPanelPage.buttonToRollUpAll;
+    }
+    public int getButtonAddNews() {
+        return newsControlPanelPage.buttonAddNews;
+    }
 }
 
 

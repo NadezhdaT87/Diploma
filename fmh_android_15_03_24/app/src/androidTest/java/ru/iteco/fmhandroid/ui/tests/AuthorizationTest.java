@@ -38,11 +38,13 @@ import ru.iteco.fmhandroid.ui.steps.AuthorizationSteps;
 import ru.iteco.fmhandroid.ui.steps.MainSteps;
 
 @LargeTest
-//@RunWith(AndroidJUnit4.class)
 @RunWith(AllureAndroidJUnit4.class)
-
 @Epic("Тест-кейсы для проведения функционального тестирования вкладки \"Авторизация\" мобильного приложения \"Мобильный хоспис\".")
 public class AuthorizationTest {
+
+    // Константы для сообщений
+    private static final String LOGIN_PASSWORD_EMPTY_ERROR = "Login and password cannot be empty";
+    private static final String SOMETHING_WRONG_ERROR = "Something went wrong. Try again later.";
 
     AuthorizationSteps authorizationSteps = new AuthorizationSteps();
     MainSteps mainSteps = new MainSteps();
@@ -56,8 +58,7 @@ public class AuthorizationTest {
     public void setUp() {
         try {
             authorizationSteps.loadAuthorizationPage();
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             authorizationSteps.clickButtonExit();
             authorizationSteps.clickButtonLogOut();
             authorizationSteps.loadAuthorizationPage();
@@ -74,9 +75,6 @@ public class AuthorizationTest {
         }
     }
 
-// Тест-кейсы для проведения функционального тестирования страницы "Авторизация" мобильного приложения "Мобильный хоспис".
-
-    //  TC - 3 - Поле "Логин", "Пароль"  пустые, при авторизации (Негативный).
     @Test
     @Story("TC - 3")
     @Description("Поле \"Логин\" , \"Пароль\" пустые, при авторизации (Негативный).")
@@ -86,12 +84,11 @@ public class AuthorizationTest {
         authorizationSteps.fillLoginField("");
         authorizationSteps.fillPasswordField("");
         authorizationSteps.clickButtonSignIn();
-        onView(withText("Login and password cannot be empty"))
+        onView(withText(LOGIN_PASSWORD_EMPTY_ERROR))
                 .inRoot(withDecorView(Matchers.not(decorView)))
                 .check(matches(isDisplayed()));
     }
 
-    //  TC - 4 - Успешная авторизация, ввод валидных данных в поле "Логин", "Пароль" (Позитивный).
     @Test
     @Story("TC - 4")
     @Description("Успешная авторизация, ввод валидных данных в поле \"Логин\", \"Пароль\" (Позитивный).")
@@ -107,22 +104,20 @@ public class AuthorizationTest {
         authorizationSteps.clickButtonLogOut();
     }
 
-    //  TC - 5 -  Поле "Логин", "Пароль" заполнено кириллицей, при авторизации (Негативный).
     @Test
     @Story("TC - 5")
-    @Description("TC - 5 -  Поле \"Логин\", \"Пароль\" заполнено кириллицей, при авторизации (Негативный).")
+    @Description("Поле \"Логин\", \"Пароль\" заполнено кириллицей, при авторизации (Негативный).")
     public void loginPasswordFieldWithCyrillic() {
         onView(isRoot()).perform(waitDisplayed(authorizationSteps.getLoginLayout(), 5000));
         authorizationSteps.textAuthorization();
         authorizationSteps.fillLoginField(getUnregisteredLogin());
         authorizationSteps.fillPasswordField(getUnregisteredPassword());
         authorizationSteps.clickButtonSignIn();
-        onView(withText("Something went wrong. Try again later."))
+        onView(withText(SOMETHING_WRONG_ERROR))
                 .inRoot(withDecorView(Matchers.not(decorView)))
                 .check(matches(isDisplayed()));
     }
 
-    // TC - 6 - Поле "Логин", "Пароль" содержит пробел, при авторизации (Негативный).
     @Test
     @Story("TC - 6")
     @Description("Поле \"Логин\", \"Пароль\" содержит пробел, при авторизации (Негативный).")
@@ -132,12 +127,11 @@ public class AuthorizationTest {
         authorizationSteps.fillLoginField(getSpaceLogin());
         authorizationSteps.fillPasswordField(getSpacePassword());
         authorizationSteps.clickButtonSignIn();
-        onView(withText("Something went wrong. Try again later."))
+        onView(withText(SOMETHING_WRONG_ERROR))
                 .inRoot(withDecorView(Matchers.not(decorView)))
                 .check(matches(isDisplayed()));
     }
 
-    //  TC - 7 - Поле "Логин" состоит из букв разного регистра, при авторизации (Негативный).
     @Test
     @Story("TC - 7")
     @Description("Поле \"Логин\" состоит из букв разного регистра, при авторизации (Негативный).")
@@ -147,12 +141,11 @@ public class AuthorizationTest {
         authorizationSteps.fillLoginField(getDifferentRegexLogin());
         authorizationSteps.fillPasswordField(getPassword());
         authorizationSteps.clickButtonSignIn();
-        onView(withText("Something went wrong. Try again later."))
+        onView(withText(SOMETHING_WRONG_ERROR))
                 .inRoot(withDecorView(Matchers.not(decorView)))
                 .check(matches(isDisplayed()));
     }
 
-    //  TC - 8 - Поле "Логин" состоит из спецсимволов, при авторизации (Негативный).
     @Test
     @Story("TC - 8")
     @Description("Поле \"Логин\" состоит из спецсимволов, при авторизации (Негативный).")
@@ -162,9 +155,8 @@ public class AuthorizationTest {
         authorizationSteps.fillLoginField(getLoginWithSpecialCharacters());
         authorizationSteps.fillPasswordField(getPassword());
         authorizationSteps.clickButtonSignIn();
-        onView(withText("Something went wrong. Try again later."))
+        onView(withText(SOMETHING_WRONG_ERROR))
                 .inRoot(withDecorView(Matchers.not(decorView)))
                 .check(matches(isDisplayed()));
     }
-
 }

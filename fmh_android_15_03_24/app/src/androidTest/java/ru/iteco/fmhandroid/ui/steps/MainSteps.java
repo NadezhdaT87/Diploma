@@ -12,51 +12,48 @@ import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.ui.elements.MainPage;
 
 public class MainSteps {
+    // Text constants
+    private static final String ALL_NEWS_BUTTON_TEXT = "ALL NEWS";
 
-    MainPage mainPage = new MainPage();
+    // Timeout constants
+    private static final int TIMEOUT_MS = 5000;
 
+    // Element identifiers
+    private final MainPage mainPage = new MainPage();
 
     public void mainScreenLoad() {
         Allure.step("Загрузка страницы");
-        onView(isRoot()).perform(waitDisplayed(mainPage.allNews, 5000));
+        onView(isRoot()).perform(waitDisplayed(mainPage.allNews, TIMEOUT_MS));
     }
 
     public void clickButtonAllNews() {
         Allure.step("Нажать на кнопку ВСЕ НОВОСТИ");
-        mainPage.getMainElementsButtonAllNews
-                .perform(click());
+        mainPage.getMainElementsButtonAllNews.perform(click());
     }
 
     public void showButtonAllNews() {
         Allure.step("Отобразилась кнопка ВСЕ НОВОСТИ");
-        mainPage.getMainElementsButtonAllNews
-                .check(matches(withText("ALL NEWS")));
+        mainPage.getMainElementsButtonAllNews.check(matches(withText(ALL_NEWS_BUTTON_TEXT)));
     }
 
     public void clickButtonMainMenu() {
         Allure.step("Нажать на кнопку Главного меню");
-        mainPage.getMainElementsButtonMainMenu
-                .perform(click());
+        mainPage.getMainElementsButtonMainMenu.perform(click());
     }
 
     public void clickButtonMain() {
         Allure.step("Нажать на кнопку Главная в Главном меню");
-        mainPage.getMainElementsButtonMain
-                .perform(click());
+        mainPage.getMainElementsButtonMain.perform(click());
     }
 
     public void clickButtonToExpandNews() {
         Allure.step("Нажать на кнопку Свернуть/развернуть ВСЕ НОВОСТИ на Главной странице");
-        mainPage.getMainElementsButtonToRollUpAllNews
-                .perform(click());
+        mainPage.getMainElementsButtonToRollUpAllNews.perform(click());
     }
 
-
     public void showTitleNewsOnMain() {
-        Allure.step(" Отобразилась панель Новости (News)");
-        mainPage.getMainElementsTitleNews
-                .check(matches(isDisplayed()));
-
+        Allure.step("Отобразилась панель Новости (News)");
+        mainPage.getMainElementsTitleNews.check(matches(isDisplayed()));
     }
 
     public int getMainMenuButton() {

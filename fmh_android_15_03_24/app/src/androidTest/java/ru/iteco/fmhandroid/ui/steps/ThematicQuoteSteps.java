@@ -10,6 +10,8 @@ import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.ui.elements.ThematicQuotePage;
 
 public class ThematicQuoteSteps {
+    // Константы для текстовых значений UI
+    private static final String LOVE_IS_ALL_TITLE = "Love is all";
 
     ThematicQuotePage thematicQuotePage = new ThematicQuotePage();
 
@@ -22,7 +24,7 @@ public class ThematicQuoteSteps {
     public void checkTitleThematicQuote() {
         Allure.step("Проверить заголовок Love is all на вкладке Тематические цитаты.");
         thematicQuotePage.getQuoteElementTitleThematicQuote
-                .check(matches(allOf(withText("Love is all"), isDisplayed())));
+                .check(matches(allOf(withText(LOVE_IS_ALL_TITLE), isDisplayed())));
     }
 
     public void clickButtonToExpandThematicQuote() {

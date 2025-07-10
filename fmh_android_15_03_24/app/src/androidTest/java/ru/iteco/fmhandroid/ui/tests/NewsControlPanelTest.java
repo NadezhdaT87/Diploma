@@ -54,10 +54,32 @@ import ru.iteco.fmhandroid.ui.steps.NewsSteps;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-//@RunWith(AllureAndroidJUnit4.class)
-
 @Epic("Тест-кейсы для проведения функционального тестирования \"Панели управления\" (Control panel) новостей мобильного приложения \"Мобильный хоспис\".")
 public class NewsControlPanelTest {
+    // UI Text Constants
+    private static final String NEWS_TEXT = "News";
+    private static final String SAVING_FAILED_MESSAGE = "Saving failed. Try again later.";
+    private static final String FILL_EMPTY_FIELDS_MESSAGE = "Fill empty fields";
+    private static final String NOT_ACTIVE_STATUS = "Not active";
+    private static final String NOT_ACTIVE_LABEL = "NOT ACTIVE";
+
+    // Test Data Constants
+    private static final String MEETING_TEXT = "Собрание";
+    private static final String RELATIVES_VISIT_TEXT = "Посещение родных";
+    private static final String ANNIVERSARY_TEXT = "Юбилей";
+    private static final String HELP_TEXT = "За помощь";
+    private static final String FUTURE_DATE = "01.01.2026";
+
+    // Timeout Constants
+    private static final int DEFAULT_TIMEOUT = 5000;
+
+    // View ID Constants
+    private static final int NEWS_ITEM_DESCRIPTION_ID = R.id.news_item_description_text_view;
+    private static final int NEWS_ITEM_PUBLICATION_DATE_ID = R.id.news_item_publication_date_text_view;
+    private static final int NEWS_ITEM_PUBLISHED_ID = R.id.news_item_published_text_view;
+    private static final int NEWS_ITEM_TITLE_ID = R.id.news_item_title_text_view;
+    private static final int SWITCHER_ID = R.id.switcher;
+
     AuthorizationSteps authorizationSteps = new AuthorizationSteps();
     MainSteps mainSteps = new MainSteps();
     NewsSteps newsSteps = new NewsSteps();
@@ -79,29 +101,28 @@ public class NewsControlPanelTest {
             authorizationSteps.clickButtonSignIn();
             mainSteps.mainScreenLoad();
         }
+
         activityScenarioRule.getScenario().onActivity(activity -> decorView = activity.getWindow().getDecorView());
     }
 
-    // ТС - 32 - Переход в форму "Создание новостей" на странице "Панель управления" (Позитивный).
     @Test
     @Story("TC - 32")
     @Description("Переход в форму \"Создание новостей\" на странице \"Панель управления\" (Позитивный).")
     public void ShowAddNewsInControlPanel() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
         newsControlPanelSteps.clickButtonControlPanel();
         newsControlPanelSteps.clickAddNews();
-        onView(withText("News")).check(matches(isDisplayed()));
+        onView(withText(NEWS_TEXT)).check(matches(isDisplayed()));
+        pressBack();
     }
 
-
-    // ТС - 33 - Создание новости в форме "Создание новости" с категорией "Объявление" на странице "Панель управления" (Позитивный).
     @Test
     @Story("TC - 33")
     @Description("Создание новости в форме \"Создание новости\" с категорией \"Объявление\" на странице \"Панель управления\" (Позитивный).")
     public void creationNewsInControlPaneAdvertisement() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
         newsControlPanelSteps.clickButtonControlPanel();
@@ -115,17 +136,16 @@ public class NewsControlPanelTest {
         newsControlPanelSteps.fillDescriptionCreatingNews(getDescriptionAdvertisement());
         newsControlPanelSteps.clickButtonSaveCreatingNews();
         newsControlPanelSteps.clickButtonToExpandNews();
-        onView(withIndex(withId(R.id.news_item_description_text_view), 0)).check(matches(withText("Собрание")));
+        onView(withIndex(withId(NEWS_ITEM_DESCRIPTION_ID), 0)).check(matches(withText(MEETING_TEXT)));
         newsControlPanelSteps.clickButtonToDeleteNews();
         newsControlPanelSteps.clickButtonToOkDeleteNews();
     }
 
-    //  ТC - 34 - Ввод в поле "Категория" собственного названия категории в форме "Создание новости" странице "Панель управления" (Негативный).
     @Test
     @Story("TC - 34")
     @Description("Ввод в поле \"Категория\" собственного названия категории в форме \"Создание новости\" странице \"Панель управления\" (Негативный).")
     public void customCategoryName() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
         newsControlPanelSteps.clickButtonControlPanel();
@@ -138,18 +158,17 @@ public class NewsControlPanelTest {
         newsControlPanelSteps.clickButtonTimeCreatingNews();
         newsControlPanelSteps.clickButtonOkTimeCreatingNews();
         newsControlPanelSteps.clickButtonSaveCreatingNews();
-        onView(withText("Saving failed. Try again later."))
+        onView(withText(SAVING_FAILED_MESSAGE))
                 .inRoot(withDecorView(Matchers.not(decorView)))
                 .check(matches(isDisplayed()));
         pressBack();
     }
 
-    //  TC - 36 - Ручной ввод времени в поле "Время", при создании новости, в форме "Создание новости", на странице "Панель управления" (Позитивный).
     @Test
     @Story("TC - 36")
     @Description("TC - 36 - Ручной ввод времени в поле \"Время\", при создании новости, в форме \"Создание новости\", на странице \"Панель управления\" (Позитивный).")
     public void manualInputTime() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
         newsControlPanelSteps.clickButtonControlPanel();
@@ -164,34 +183,32 @@ public class NewsControlPanelTest {
         newsControlPanelSteps.fillDescriptionCreatingNews(getDescriptionNeedHelp());
         newsControlPanelSteps.clickButtonSaveCreatingNews();
         newsControlPanelSteps.clickButtonToExpandNews();
-        onView(withIndex(withId(R.id.news_item_description_text_view), 0)).check(matches(withText("Посещение родных")));
+        onView(withIndex(withId(NEWS_ITEM_DESCRIPTION_ID), 0)).check(matches(withText(RELATIVES_VISIT_TEXT)));
         newsControlPanelSteps.clickButtonToDeleteNews();
         newsControlPanelSteps.clickButtonToOkDeleteNews();
     }
 
-    //  ТC - 37 -Создание новости без заполнения полей в форме "Создание новости" на странице "Панель управления" (Негативный).
     @Test
     @Story("TC - 25")
     @Description("Создание новости без заполнения полей в форме \"Создание новости\" на странице \"Панель управления\" (Негативный).")
     public void fieldsEmptyCreationNewsInControlPanel() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
         newsControlPanelSteps.clickButtonControlPanel();
         newsControlPanelSteps.clickAddNews();
         newsControlPanelSteps.clickButtonSaveCreatingNews();
-        onView(withText("Fill empty fields"))
+        onView(withText(FILL_EMPTY_FIELDS_MESSAGE))
                 .inRoot(withDecorView(Matchers.not(decorView)))
                 .check(matches(isDisplayed()));
         pressBack();
     }
 
-    //  ТC - 38 - Поле "Дата публикации" состоит из даты будущего года, при создании новости, на странице "Панель управления" (Позитивный).
     @Test
     @Story("TC - 38")
     @Description("Поле \"Дата публикации\" состоит из даты будущего года, при создании новости, на странице \"Панель управления\" (Позитивный)")
     public void fieldDateConsistsOfNextYearDate() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
         newsControlPanelSteps.clickButtonControlPanel();
@@ -203,31 +220,29 @@ public class NewsControlPanelTest {
         newsControlPanelSteps.clickButtonOkTimeCreatingNews();
         newsControlPanelSteps.fillDescriptionCreatingNews(getDescriptionGratitude());
         newsControlPanelSteps.clickButtonSaveCreatingNews();
-        onView(withIndex(withId(R.id.news_item_publication_date_text_view), 0)).check(matches(withText("01.01.2026")));
+        onView(withIndex(withId(NEWS_ITEM_PUBLICATION_DATE_ID), 0)).check(matches(withText(FUTURE_DATE)));
         newsControlPanelSteps.clickButtonToDeleteNews();
         newsControlPanelSteps.clickButtonToOkDeleteNews();
     }
 
-//  TC - 40 - Переход в форму "Редактирование новости" на странице "Панель управления" (Позитивный).
-@Test
-@Story("TC - 40")
-@Description("Переход в форму \"Редактирование новости\" на странице \"Панель управления\" (Позитивный).")
-public void editingNewsControlPanel1() {
-    onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
-    mainSteps.clickButtonMainMenu();
-    newsSteps.clickButtonNews();
-    newsControlPanelSteps.clickButtonControlPanel();
-    newsControlPanelSteps.clickButtonToEditNews();
-    onView(withText("News")).check(matches(isDisplayed()));
-    pressBack();
-}
+    @Test
+    @Story("TC - 40")
+    @Description("Переход в форму \"Редактирование новости\" на странице \"Панель управления\" (Позитивный).")
+    public void showFormEditingNewsInControlPanel() {
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
+        mainSteps.clickButtonMainMenu();
+        newsSteps.clickButtonNews();
+        newsControlPanelSteps.clickButtonControlPanel();
+        newsControlPanelSteps.clickButtonToEditNews();
+        onView(withText(NEWS_TEXT)).check(matches(isDisplayed()));
+        pressBack();
+    }
 
-    //  TC - 41 - Редактирование новости валидными данными на странице "Панель управления" (Позитивный).
     @Test
     @Story("TC - 41")
     @Description("Редактирование новости валидными данными на странице \"Панель управления\" (Позитивный).")
     public void editingNewsControlPanel() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
         newsControlPanelSteps.clickButtonControlPanel();
@@ -237,36 +252,34 @@ public void editingNewsControlPanel1() {
         newsControlPanelSteps.fillDescriptionCreatingNews(getDescriptionBirthdayEdit());
         newsControlPanelSteps.clickButtonSaveCreatingNews();
         newsControlPanelSteps.clickButtonToExpandNews();
-        onView(withIndex(withId(R.id.news_item_description_text_view), 0)).check(matches(withText("Юбилей")));
+        onView(withIndex(withId(NEWS_ITEM_DESCRIPTION_ID), 0)).check(matches(withText(ANNIVERSARY_TEXT)));
         pressBack();
     }
 
-    //  TC - 43 - Смена статуса новости, находящаяся в статусе "АКТИВНА" на статус "НЕ АКТИВНА", на странице "Панель управления"  в форме "Редактирование новости" (Позитивный).
     @Test
     @Story("TC - 43")
     @Description("Смена статуса новости, находящаяся в статусе \"АКТИВНА\" на статус \"НЕ АКТИВНА\", на странице \"Панель управления\"  в форме \"Редактирование новости\" (Control panel) мобильного приложения \"Мобильный хоспис\" (Позитивный).")
     public void changingStatusNewsControlPanel() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
         newsControlPanelSteps.clickButtonControlPanel();
         newsControlPanelSteps.clickButtonToEditNews();
         newsControlPanelSteps.clickButtonToSwitchStatusNews();
-        onView(withId(R.id.switcher))
-                .check(matches(withText("Not active")))
+        onView(withId(SWITCHER_ID))
+                .check(matches(withText(NOT_ACTIVE_STATUS)))
                 .check(matches(isDisplayed()));
         newsControlPanelSteps.clickButtonSaveCreatingNews();
-        onView(withIndex(withId(R.id.news_item_published_text_view), 0)).check(matches(withText("NOT ACTIVE")));
+        onView(withIndex(withId(NEWS_ITEM_PUBLISHED_ID), 0)).check(matches(withText(NOT_ACTIVE_LABEL)));
         newsControlPanelSteps.clickButtonToDeleteNews();
         newsControlPanelSteps.clickButtonToOkDeleteNews();
     }
 
-    //  TC - 46 - Удаление активной новости на странице "Панель управления"  (Позитивный).
     @Test
     @Story("TC - 46")
     @Description("Удаление активной новости на странице \"Панель управления\"  (Позитивный).")
     public void deletingNewsControlPanel() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
         newsControlPanelSteps.clickButtonControlPanel();
@@ -279,10 +292,9 @@ public void editingNewsControlPanel1() {
         newsControlPanelSteps.fillDescriptionCreatingNews(getDescriptionGratitudeDonations());
         newsControlPanelSteps.clickButtonSaveCreatingNews();
         newsControlPanelSteps.clickButtonToExpandNews();
-        onView(withIndex(withId(R.id.news_item_description_text_view), 0)).check(matches(withText("За помощь")));
+        onView(withIndex(withId(NEWS_ITEM_DESCRIPTION_ID), 0)).check(matches(withText(HELP_TEXT)));
         newsControlPanelSteps.clickButtonToDeleteNews();
         newsControlPanelSteps.clickButtonToOkDeleteNews();
-        onView(Matchers.allOf(withId(R.id.news_item_title_text_view), withText("За помощь"))).check(doesNotExist());
+        onView(Matchers.allOf(withId(NEWS_ITEM_TITLE_ID), withText(HELP_TEXT))).check(doesNotExist());
     }
-
 }

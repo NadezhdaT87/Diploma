@@ -21,6 +21,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.Epic;
 import io.qameta.allure.kotlin.Story;
@@ -32,13 +33,20 @@ import ru.iteco.fmhandroid.ui.steps.MainSteps;
 import ru.iteco.fmhandroid.ui.steps.NewsSteps;
 import ru.iteco.fmhandroid.ui.steps.ThematicQuoteSteps;
 
-
 @LargeTest
-@RunWith(AndroidJUnit4.class)
-//@RunWith(AllureAndroidJUnit4.class)
-
+@RunWith(AllureAndroidJUnit4.class)
 @Epic("Тест-кейсы для проведения функционального тестирования вкладки \"Главная страница\" (Main) мобильного приложения \"Мобильный хоспис\".")
 public class MainTest {
+
+    // Константы для текстовых элементов
+    private static final String NEWS_TITLE = "News";
+    private static final String VERSION_TEXT = "Version:";
+    private static final String ALL_NEWS_TEXT = "ALL NEWS";
+    private static final String LOVE_IS_ALL_TEXT = "Love is all";
+    private static final String AUTHORIZATION_TITLE = "Authorization";
+
+    // Константы для таймаутов
+    private static final int DEFAULT_TIMEOUT = 5000;
 
     AuthorizationSteps authorizationSteps = new AuthorizationSteps();
     MainSteps mainSteps = new MainSteps();
@@ -62,76 +70,69 @@ public class MainTest {
         }
     }
 
-// Тест-кейсы для проведения функционального тестирования страницы "Главная" мобильного приложения "Мобильный хоспис".
-
-    //  TC -9 - Переход на страницу "Новости" через "главное меню" (Позитивный).
     @Test
     @Story("TC - 9")
-    @Description(" Переход на страницу \"Новости\" через \"главное меню\" (Позитивный).")
+    @Description("Переход на страницу \"Новости\" через \"главное меню\" (Позитивный).")
     public void ShowNewsPage() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
-        onView(allOf(withText("News"),
+        onView(allOf(withText(NEWS_TITLE),
                 withParent(withParent(withId(R.id.container_list_news_include))))).check(matches(isDisplayed()));
     }
 
-    //  TC - 10 - Переход на страницу "О приложении" (Позитивный).
     @Test
     @Story("TC - 10")
     @Description("Переход на страницу \"О приложении\" (Позитивный).")
     public void ShowAboutPage() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
-        onView(withText("News")).check(matches(isDisplayed()));
+        onView(withText(NEWS_TITLE)).check(matches(isDisplayed()));
         mainSteps.clickButtonMainMenu();
         aboutSteps.clickButtonAboutMainMenu();
-        onView(withText("Version:")).check(matches(isDisplayed()));
+        onView(withText(VERSION_TEXT)).check(matches(isDisplayed()));
     }
 
-    //  ТС - 11 - Работа кнопки "стрелка вниз" в разделе "Новости" на "главной странице" (Позитивный).
     @Test
     @Story("TC - 11")
     @Description("Работа кнопки \"стрелка вниз\" в разделе \"Новости\" на \"главной странице\" (Позитивный).")
     public void extendNews() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getButtonToExpandNews(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getButtonToExpandNews(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonToExpandNews();
         mainSteps.clickButtonToExpandNews();
-        onView(withId(R.id.all_news_text_view)).check(matches(withText("ALL NEWS")));
+        onView(withId(R.id.all_news_text_view)).check(matches(withText(ALL_NEWS_TEXT)));
     }
-    //  TC - 13 - Работа текстовой ссылки - кнопки "Все новости", на "Главной странице" для успешного перехода на страницу "Новости" (Позитивный).
+
     @Test
     @Story("TC - 13")
     @Description("Работа текстовой ссылки - кнопки \"Все новости\", на \"Главной странице\" для успешного перехода на страницу \"Новости\" (Позитивный).")
     public void transferToAllNewsThroughMainPage() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.showButtonAllNews();
         mainSteps.clickButtonAllNews();
-        onView(allOf(withText("News"),
+        onView(allOf(withText(NEWS_TITLE),
                 withParent(withParent(withId(R.id.container_list_news_include))))).check(matches(isDisplayed()));
     }
 
-    //  TC - 14 - Переход на страницу "Главное - жить любя" (Позитивный).
     @Test
     @Story("TC - 14")
     @Description("Переход на страницу \"Главное - жить любя\" (Позитивный).")
     public void ShowLoveIsAllThroughMainPage() {
-        onView(isRoot()).perform(waitDisplayed(thematicQuoteSteps.getMissionImageButton(), 5000));
+        onView(isRoot()).perform(waitDisplayed(thematicQuoteSteps.getMissionImageButton(), DEFAULT_TIMEOUT));
         thematicQuoteSteps.clickButtonThematicQuote();
         thematicQuoteSteps.checkTitleThematicQuote();
-        onView(withText("Love is all")).check(matches(isDisplayed()));
+        onView(withText(LOVE_IS_ALL_TEXT)).check(matches(isDisplayed()));
     }
 
-    //  TC - 15 - Выход из профиля (Позитивный).
     @Test
     @Story("TC - 15")
     @Description("Выход из профиля (Позитивный).")
     public void LogoutTest() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getButtonToExpandNews(), 5000));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getButtonToExpandNews(), DEFAULT_TIMEOUT));
         authorizationSteps.clickButtonExit();
         authorizationSteps.clickButtonLogOut();
         authorizationSteps.loadAuthorizationPage();
-        onView(withText("Authorization")).check(matches(isDisplayed()));
+        onView(withText(AUTHORIZATION_TITLE)).check(matches(isDisplayed()));
     }
 }

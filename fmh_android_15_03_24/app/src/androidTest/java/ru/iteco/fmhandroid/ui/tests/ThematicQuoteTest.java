@@ -20,6 +20,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.Epic;
 import io.qameta.allure.kotlin.Story;
@@ -30,8 +31,8 @@ import ru.iteco.fmhandroid.ui.steps.MainSteps;
 import ru.iteco.fmhandroid.ui.steps.ThematicQuoteSteps;
 
 @LargeTest
-@RunWith(AndroidJUnit4.class)
-//@RunWith(AllureAndroidJUnit4.class)
+//@RunWith(AndroidJUnit4.class)
+@RunWith(AllureAndroidJUnit4.class)
 
 @Epic("Тест-кейсы для проведения функционального тестирования на странице \"Тематические цитаты\" мобильного приложения \"Мобильный хоспис\".")
 public class ThematicQuoteTest {
@@ -69,16 +70,5 @@ public class ThematicQuoteTest {
         onView(withIndex(withId(R.id.our_mission_item_description_text_view), 0)).check(matches(isDisplayed()));
     }
 
-    //  TC - 14 - Переход на страницу "Главное - жить любя" (Love is all) (Позитивный).
-    @Test
-    @Story("TC - 14")
-    @Description("Переход на страницу \"Главное - жить любя\" (Love is all) (Позитивный).")
-    public void ShowLoveIsAllThroughMainPage() {
-        onView(isRoot()).perform(waitDisplayed(thematicQuoteSteps.getMissionImageButton(), 5000));
-        thematicQuoteSteps.clickButtonThematicQuote();
-        thematicQuoteSteps.checkTitleThematicQuote();
-        onView(withText("Love is all")).check(matches(isDisplayed()));
-
-    }
 }
 

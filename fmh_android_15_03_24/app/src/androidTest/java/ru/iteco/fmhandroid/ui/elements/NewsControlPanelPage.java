@@ -69,6 +69,8 @@ public class NewsControlPanelPage {
     public static String descriptionGratitudeDonations;
     public static String titleBirthdayEdit;
     public static String descriptionBirthdayEdit;
+    public int buttonToRollUpAll;
+    public int buttonAddNews;
 
 
     public NewsControlPanelPage() {
@@ -104,7 +106,7 @@ public class NewsControlPanelPage {
         descriptionBirthdayEdit = "Юбилей";
         descriptionGratitude = "За работу";
         descriptionGratitudeDonations = "За помощь";
-        descriptionNeedHelp = "Посещение родных";
+        descriptionNeedHelp = "Лечение";
         descriptionSalary = "Перечислен аванс";
         descriptionSalaryEnumerated = "Зарплата перечислена";
         numbersCategoryTitle = "Объявление";
@@ -113,10 +115,12 @@ public class NewsControlPanelPage {
         titleAdvertisement = "Объявлен сбор";
         titleBirthdayEdit = "Хосписа";
         titleCelebration = "С Новым годом";
-        titleGratitude = "Тарасовой";
+        titleGratitude = "Козловой";
         titleNeedHelp = "Пациенту с деменцией";
         titleSalary = "Начислен аванс";
         titleSalaryEnumerated = "Начислена зарплата";
+        buttonToRollUpAll = R.id.view_news_item_image_view;
+        buttonAddNews = R.id.add_news_image_view;
 
     }
 

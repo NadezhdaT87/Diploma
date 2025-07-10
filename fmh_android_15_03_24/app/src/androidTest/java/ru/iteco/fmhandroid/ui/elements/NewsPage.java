@@ -20,6 +20,7 @@ public class NewsPage {
     public ViewInteraction getNewsButtonOkDateStart;
     public ViewInteraction getNewsButtonDateEnd;
     public ViewInteraction getEditTextCategory;
+    public int buttonFilterNews;
 
 
     public NewsPage() {
@@ -31,6 +32,7 @@ public class NewsPage {
         getNewsButtonOkDateStart = onView(withId(android.R.id.button1));
         getNewsButtonDateEnd = onView(withId(R.id.news_item_publish_date_end_text_input_edit_text));
         getEditTextCategory = onView(withId(R.id.news_item_category_text_auto_complete_text_view));
+        buttonFilterNews = R.id.filter_news_material_button;
 
     }
 
