@@ -1,0 +1,109 @@
+{
+    "name": "ShowLoveIsAllThroughMainPage",
+    "start": 1752121993531,
+    "stop": 1752121997596,
+    "stage": "finished",
+    "description": "Переход на страницу \"Главное - жить любя\" (Love is all) (Позитивный).",
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Загрузка страницы",
+            "start": 1752121994260,
+            "stop": 1752121994260,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "На главной странице экрана приложения нажать на кнопку Бабочка (Тематические цитаты).",
+            "start": 1752121996904,
+            "stop": 1752121996904,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверить заголовок Love is all на вкладке Тематические цитаты.",
+            "start": 1752121997323,
+            "stop": 1752121997323,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "f903169d-d0c9-42eb-9fea-9971aeae7037",
+    "historyId": "1001e0590d7247a777fae2bccd0b5501",
+    "fullName": "ru.iteco.fmhandroid.ui.tests.ThematicQuoteTest.ShowLoveIsAllThroughMainPage",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.iteco.fmhandroid.ui.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.iteco.fmhandroid.ui.tests.ThematicQuoteTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "ShowLoveIsAllThroughMainPage"
+        },
+        {
+            "name": "suite",
+            "value": "ru.iteco.fmhandroid.ui.tests.ThematicQuoteTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(919)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        },
+        {
+            "name": "story",
+            "value": "TC - 14"
+        },
+        {
+            "name": "epic",
+            "value": "Тест-кейсы для проведения функционального тестирования на странице \"Тематические цитаты\" мобильного приложения \"Мобильный хоспис\"."
+        }
+    ]
+}

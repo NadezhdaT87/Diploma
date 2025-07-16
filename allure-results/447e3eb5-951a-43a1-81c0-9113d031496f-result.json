@@ -1,0 +1,112 @@
+{
+    "name": "filterNewsWithoutFillingFields",
+    "start": 1752120097650,
+    "stop": 1752120102766,
+    "stage": "finished",
+    "description": "Фильтрация новостей без заполнения полей на странице \"Новости\" (Негативный).",
+    "descriptionHtml": null,
+    "status": "broken",
+    "statusDetails": {
+        "message": "Class 'androidx.test.espresso.action.Tap$1' does not implement interface 'org.hamcrest.SelfDescribing' in call to 'void org.hamcrest.SelfDescribing.describeTo(org.hamcrest.Description)' (declaration of 'org.hamcrest.BaseDescription' appears in /data/app/ru.iteco.fmhandroid.test-OOFLW3s5aOQn-yoI2Uq9HA==/base.apk)",
+        "trace": "java.lang.IncompatibleClassChangeError: Class 'androidx.test.espresso.action.Tap$1' does not implement interface 'org.hamcrest.SelfDescribing' in call to 'void org.hamcrest.SelfDescribing.describeTo(org.hamcrest.Description)' (declaration of 'org.hamcrest.BaseDescription' appears in /data/app/ru.iteco.fmhandroid.test-OOFLW3s5aOQn-yoI2Uq9HA==/base.apk)\n\tat org.hamcrest.BaseDescription.appendDescriptionOf(BaseDescription.java:24)\n\tat org.hamcrest.StringDescription.toString(StringDescription.java:28)\n\tat org.hamcrest.BaseMatcher.toString(BaseMatcher.java:28)\n\tat androidx.test.espresso.action.GeneralClickAction.getDescription(GeneralClickAction.java:211)\n\tat androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:190)\n\tat androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:182)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat android.os.Handler.handleCallback(Handler.java:883)\n\tat android.os.Handler.dispatchMessage(Handler.java:100)\n\tat android.os.Looper.loop(Looper.java:214)\n\tat android.app.ActivityThread.main(ActivityThread.java:7356)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:492)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:930)\n"
+    },
+    "steps": [
+        {
+            "name": "Загрузка страницы",
+            "start": 1752120098573,
+            "stop": 1752120098573,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на кнопку Главного меню",
+            "start": 1752120101288,
+            "stop": 1752120101288,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на кнопку Новости в Главном меню",
+            "start": 1752120101659,
+            "stop": 1752120101659,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "447e3eb5-951a-43a1-81c0-9113d031496f",
+    "historyId": "65d5f801f3b7739bf73e0bb3a4884d61",
+    "fullName": "ru.iteco.fmhandroid.ui.tests.NewsTest.filterNewsWithoutFillingFields",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.iteco.fmhandroid.ui.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.iteco.fmhandroid.ui.tests.NewsTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "filterNewsWithoutFillingFields"
+        },
+        {
+            "name": "suite",
+            "value": "ru.iteco.fmhandroid.ui.tests.NewsTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(791)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        },
+        {
+            "name": "story",
+            "value": "TC - 23"
+        },
+        {
+            "name": "epic",
+            "value": "Тест-кейсы для проведения функционального тестирования вкладки \"Новости\" (News) мобильного приложения \"Мобильный хоспис\"."
+        }
+    ]
+}

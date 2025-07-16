@@ -32,41 +32,30 @@ public class NewsControlPanelPage {
     public ViewInteraction getNewsControlPanelElementsButtonToOkDeleteNews;
     public ViewInteraction getNewsControlPanelElementsButtonToEditNews;
     public ViewInteraction getNewsControlPanelElementsButtonToSwitchStatusNews;
+    public ViewInteraction getNewsControlPanelElementsButtonFilterNewsPanel;
 
     public static String categoryAdvertisement;
     public static String titleAdvertisement;
     public static String descriptionAdvertisement;
-    public static String categorySalary;
-    public static String titleSalary;
-    public static String descriptionSalary;
-    public static String titleDonations;
-    public static String descriptionDonations;
     public static String categoryBirthday;
     public static String descriptionBirthday;
-    public static String titleSalaryEnumerated;
-    public static String descriptionSalaryEnumerated;
-    public static String categoryUnion;
-    public static String titleUnion;
-    public static String descriptionUnion;
-    public static String categoryCelebration;
-    public static String titleCelebration;
+
+
+
     public static String customCategory;
     public static String customCategoryTitle;
     public static String customCategoryDescription;
-    public static String numbersCategory;
-    public static String numbersCategoryTitle;
-    public static String numbersCategoryDescription;
-    public static String specialCharactersCategory;
-    public static String specialCharactersCategoryTitle;
-    public static String specialCharactersCategoryDescription;
+
+
+
     public static String categoryGratitude;
     public static String titleGratitude;
     public static String descriptionGratitude;
     public static String categoryNeedHelp;
     public static String titleNeedHelp;
     public static String descriptionNeedHelp;
-    public static String titleGratitudeDonations;
-    public static String descriptionGratitudeDonations;
+
+
     public static String titleBirthdayEdit;
     public static String descriptionBirthdayEdit;
     public int buttonToRollUpAll;
@@ -92,33 +81,24 @@ public class NewsControlPanelPage {
         getNewsControlPanelElementsButtonToOkDeleteNews = onView(withId(android.R.id.button1));
         getNewsControlPanelElementsButtonToEditNews = onView(withIndex(withId(R.id.edit_news_item_image_view), 0));
         getNewsControlPanelElementsButtonToSwitchStatusNews = onView(withId(R.id.switcher));
+        getNewsControlPanelElementsButtonFilterNewsPanel = onView(withId(R.id.filter_news_material_button));
         categoryAdvertisement = "Объявление";
-        categoryBirthday = "День рождения";
-        categoryCelebration = "Праздник";
-        categoryGratitude = "Благодарность";
-        categoryNeedHelp = "Нужна помощь";
-        categorySalary = "Зарплата";
-        customCategory = "Подарки";
-        customCategoryDescription = "На день медработника";
-        customCategoryTitle = "Всем сотрудникам";
-        descriptionAdvertisement = "Собрание";
-        descriptionBirthday = "Пётр Иванов";
-        descriptionBirthdayEdit = "Юбилей";
-        descriptionGratitude = "За работу";
-        descriptionGratitudeDonations = "За помощь";
-        descriptionNeedHelp = "Лечение";
-        descriptionSalary = "Перечислен аванс";
-        descriptionSalaryEnumerated = "Зарплата перечислена";
-        numbersCategoryTitle = "Объявление";
-        specialCharactersCategoryDescription = "Корпус построен";
-        specialCharactersCategoryTitle = "Открытие корпуса";
         titleAdvertisement = "Объявлен сбор";
-        titleBirthdayEdit = "Хосписа";
-        titleCelebration = "С Новым годом";
+        descriptionAdvertisement = "Собрание";
+        customCategory = "Подарки";
+        customCategoryTitle = "Всем сотрудникам";
+        customCategoryDescription = "На день медработника";
+        categoryGratitude = "Благодарность";
         titleGratitude = "Козловой";
+        descriptionGratitude = "За работу";
+        categoryBirthday = "День рождения";
+        titleBirthdayEdit = "Хосписа";
+        descriptionBirthdayEdit = "Юбилей";
+        categoryNeedHelp = "Нужна помощь";
         titleNeedHelp = "Пациенту с деменцией";
-        titleSalary = "Начислен аванс";
-        titleSalaryEnumerated = "Начислена зарплата";
+        descriptionNeedHelp = "Лечение";
+
+
         buttonToRollUpAll = R.id.view_news_item_image_view;
         buttonAddNews = R.id.add_news_image_view;
 

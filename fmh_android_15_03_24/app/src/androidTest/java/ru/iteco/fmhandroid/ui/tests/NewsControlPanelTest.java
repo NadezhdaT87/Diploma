@@ -9,6 +9,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
 import static ru.iteco.fmhandroid.ui.data.DataHelper.waitDisplayed;
 import static ru.iteco.fmhandroid.ui.data.DataHelper.withIndex;
 import static ru.iteco.fmhandroid.ui.steps.AuthorizationSteps.getLogin;
@@ -23,7 +24,7 @@ import static ru.iteco.fmhandroid.ui.steps.NewsControlPanelSteps.getCustomCatego
 import static ru.iteco.fmhandroid.ui.steps.NewsControlPanelSteps.getDescriptionAdvertisement;
 import static ru.iteco.fmhandroid.ui.steps.NewsControlPanelSteps.getDescriptionBirthdayEdit;
 import static ru.iteco.fmhandroid.ui.steps.NewsControlPanelSteps.getDescriptionGratitude;
-import static ru.iteco.fmhandroid.ui.steps.NewsControlPanelSteps.getDescriptionGratitudeDonations;
+
 import static ru.iteco.fmhandroid.ui.steps.NewsControlPanelSteps.getDescriptionNeedHelp;
 import static ru.iteco.fmhandroid.ui.steps.NewsControlPanelSteps.getTitleAdvertisement;
 import static ru.iteco.fmhandroid.ui.steps.NewsControlPanelSteps.getTitleBirthdayEdit;
@@ -42,6 +43,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.Epic;
 import io.qameta.allure.kotlin.Story;
@@ -53,27 +55,26 @@ import ru.iteco.fmhandroid.ui.steps.NewsControlPanelSteps;
 import ru.iteco.fmhandroid.ui.steps.NewsSteps;
 
 @LargeTest
-@RunWith(AndroidJUnit4.class)
+@RunWith(AllureAndroidJUnit4.class)
 @Epic("Тест-кейсы для проведения функционального тестирования \"Панели управления\" (Control panel) новостей мобильного приложения \"Мобильный хоспис\".")
 public class NewsControlPanelTest {
-    // UI Text Constants
     private static final String NEWS_TEXT = "News";
+    private static final String FILTER_NEWS_TITLE = "Filter news";
     private static final String SAVING_FAILED_MESSAGE = "Saving failed. Try again later.";
     private static final String FILL_EMPTY_FIELDS_MESSAGE = "Fill empty fields";
     private static final String NOT_ACTIVE_STATUS = "Not active";
     private static final String NOT_ACTIVE_LABEL = "NOT ACTIVE";
 
-    // Test Data Constants
+
     private static final String MEETING_TEXT = "Собрание";
-    private static final String RELATIVES_VISIT_TEXT = "Посещение родных";
     private static final String ANNIVERSARY_TEXT = "Юбилей";
-    private static final String HELP_TEXT = "За помощь";
+    private static final String HELP_TEXT = "Лечение";
     private static final String FUTURE_DATE = "01.01.2026";
 
-    // Timeout Constants
+
     private static final int DEFAULT_TIMEOUT = 5000;
 
-    // View ID Constants
+
     private static final int NEWS_ITEM_DESCRIPTION_ID = R.id.news_item_description_text_view;
     private static final int NEWS_ITEM_PUBLICATION_DATE_ID = R.id.news_item_publication_date_text_view;
     private static final int NEWS_ITEM_PUBLISHED_ID = R.id.news_item_published_text_view;
@@ -104,6 +105,18 @@ public class NewsControlPanelTest {
 
         activityScenarioRule.getScenario().onActivity(activity -> decorView = activity.getWindow().getDecorView());
     }
+    @Test
+    @Story("TC - 27")
+    @Description("Переход в форму \"Фильтровать новости\" на странице \"Панель управления\" (Позитивный).")
+    public void ShowFilterNewsInControlPanel() {
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
+        mainSteps.clickButtonMainMenu();
+        newsSteps.clickButtonNews();
+        newsControlPanelSteps.clickButtonControlPanel();
+        newsControlPanelSteps.clickButtonFilterControlPanel();
+        onView(withText(FILTER_NEWS_TITLE)).check(matches(isDisplayed()));
+        pressBack();
+    }
 
     @Test
     @Story("TC - 32")
@@ -121,7 +134,7 @@ public class NewsControlPanelTest {
     @Test
     @Story("TC - 33")
     @Description("Создание новости в форме \"Создание новости\" с категорией \"Объявление\" на странице \"Панель управления\" (Позитивный).")
-    public void creationNewsInControlPaneAdvertisement() {
+    public void creationNewsInControlPanelAdvertisement() {
         onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
@@ -129,8 +142,7 @@ public class NewsControlPanelTest {
         newsControlPanelSteps.clickAddNews();
         newsControlPanelSteps.fillInNewsCategoryField(getCategoryAdvertisement());
         newsControlPanelSteps.fillTitleCreatingNews(getTitleAdvertisement());
-        newsControlPanelSteps.clickButtonDateCreatingNews();
-        newsControlPanelSteps.clickButtonOkDateCreatingNews();
+        newsControlPanelSteps.clickButtonDateCreatingNextDate();
         newsControlPanelSteps.clickButtonTimeCreatingNews();
         newsControlPanelSteps.clickButtonOkTimeCreatingNews();
         newsControlPanelSteps.fillDescriptionCreatingNews(getDescriptionAdvertisement());
@@ -168,28 +180,27 @@ public class NewsControlPanelTest {
     @Story("TC - 36")
     @Description("TC - 36 - Ручной ввод времени в поле \"Время\", при создании новости, в форме \"Создание новости\", на странице \"Панель управления\" (Позитивный).")
     public void manualInputTime() {
-        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
+        onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), 5000));
         mainSteps.clickButtonMainMenu();
         newsSteps.clickButtonNews();
         newsControlPanelSteps.clickButtonControlPanel();
         newsControlPanelSteps.clickAddNews();
-        newsControlPanelSteps.fillInNewsCategoryField(getCategoryNeedHelp());
-        newsControlPanelSteps.fillTitleCreatingNews(getTitleNeedHelp());
-        newsControlPanelSteps.clickButtonDateCreatingNews();
-        newsControlPanelSteps.clickButtonOkDateCreatingNews();
+        newsControlPanelSteps.fillInNewsCategoryField(getCategoryAdvertisement());
+        newsControlPanelSteps.fillTitleCreatingNews(getTitleAdvertisement());
+        newsControlPanelSteps.clickButtonDateCreatingNextDate();
         newsControlPanelSteps.clickButtonTimeCreatingNews();
         newsControlPanelSteps.manualInputTime();
         newsControlPanelSteps.clickButtonOkTimeCreatingNews();
-        newsControlPanelSteps.fillDescriptionCreatingNews(getDescriptionNeedHelp());
+        newsControlPanelSteps.fillDescriptionCreatingNews(getDescriptionAdvertisement());
         newsControlPanelSteps.clickButtonSaveCreatingNews();
         newsControlPanelSteps.clickButtonToExpandNews();
-        onView(withIndex(withId(NEWS_ITEM_DESCRIPTION_ID), 0)).check(matches(withText(RELATIVES_VISIT_TEXT)));
+        onView(withIndex(withId(NEWS_ITEM_DESCRIPTION_ID), 0)).check(matches(withText(MEETING_TEXT)));
         newsControlPanelSteps.clickButtonToDeleteNews();
         newsControlPanelSteps.clickButtonToOkDeleteNews();
     }
 
     @Test
-    @Story("TC - 25")
+    @Story("TC - 37")
     @Description("Создание новости без заполнения полей в форме \"Создание новости\" на странице \"Панель управления\" (Негативный).")
     public void fieldsEmptyCreationNewsInControlPanel() {
         onView(isRoot()).perform(waitDisplayed(mainSteps.getMainMenuButton(), DEFAULT_TIMEOUT));
@@ -284,12 +295,12 @@ public class NewsControlPanelTest {
         newsSteps.clickButtonNews();
         newsControlPanelSteps.clickButtonControlPanel();
         newsControlPanelSteps.clickAddNews();
-        newsControlPanelSteps.fillInNewsCategoryField(getCategoryGratitude());
-        newsControlPanelSteps.fillTitleCreatingNews(getTitleGratitude());
+        newsControlPanelSteps.fillInNewsCategoryField(getCategoryNeedHelp());
+        newsControlPanelSteps.fillTitleCreatingNews(getTitleNeedHelp());
         newsControlPanelSteps.clickButtonDateCreatingNextDate();
         newsControlPanelSteps.clickButtonTimeCreatingNews();
         newsControlPanelSteps.clickButtonOkTimeCreatingNews();
-        newsControlPanelSteps.fillDescriptionCreatingNews(getDescriptionGratitudeDonations());
+        newsControlPanelSteps.fillDescriptionCreatingNews(getDescriptionNeedHelp());
         newsControlPanelSteps.clickButtonSaveCreatingNews();
         newsControlPanelSteps.clickButtonToExpandNews();
         onView(withIndex(withId(NEWS_ITEM_DESCRIPTION_ID), 0)).check(matches(withText(HELP_TEXT)));
